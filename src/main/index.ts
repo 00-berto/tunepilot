@@ -16,6 +16,7 @@ function createWindow(): void {
       sandbox: false,
     },
     titleBarStyle: "hidden",
+    icon: join(__dirname, "icon.png"),
   });
 
   mainWindow.on("ready-to-show", () => {
