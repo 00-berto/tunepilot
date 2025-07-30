@@ -17,6 +17,7 @@ import {
   PlayIcon,
 } from "lucide-react";
 import { getAudioUrl } from "@renderer/lib/hooks/getAudioUrl";
+import { toast } from "sonner";
 
 export function getCoverSrc(
   pictures?: IAudioMetadata["common"]["picture"],
@@ -182,10 +183,20 @@ export default function NowPlaying() {
           </div>
         </div>
         <div className="flex flex-row items-center justify-center">
-          <div className="flex items-center justify-center p-1.5 rounded-full hover:bg-dominant-foreground/10 aspect-square">
+          <div
+            onClick={() =>
+              toast("you really thought this shit would work lmaoooo 🤣🤣")
+            }
+            className="flex items-center justify-center p-1.5 rounded-full hover:bg-dominant-foreground/10 aspect-square"
+          >
             <EllipsisIcon className={"size-5"} />
           </div>
-          <div className="flex items-center justify-center p-1.5 rounded-full hover:bg-dominant-foreground/10 aspect-square">
+          <div
+            onClick={() =>
+              toast("you really thought this shit would work lmaoooo 🤣🤣")
+            }
+            className="flex items-center justify-center p-1.5 rounded-full hover:bg-dominant-foreground/10 aspect-square"
+          >
             <MoveDiagonalIcon className={"size-5"} />
           </div>
         </div>
