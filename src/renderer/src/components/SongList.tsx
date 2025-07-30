@@ -3,6 +3,7 @@ import { RootState } from "@renderer/lib/store";
 import { setFile } from "@renderer/lib/slices/tuneSlice";
 import { getDominantColor } from "@renderer/lib/hooks/getDominantColor";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function SongList() {
   const files = useSelector((state: RootState) => state.files.files);
@@ -18,15 +19,45 @@ export default function SongList() {
     return (
       <div
         className={
-          "select-none size-full flex flex-col gap-3 items-center justify-center"
+          "select-none flex flex-col gap-8 items-center justify-center m-auto"
         }
       >
-        <div className="text-xl font-bold">
-          Please specify a path inside your local storage.
+        <div className="flex flex-col gap-3 items-center justify-center">
+          <div className="text-xl font-bold">
+            Please paste the path to your music folder below.
+          </div>
+          <div className="">
+            We're working on making this process easier and more streamlined.
+          </div>
         </div>
-        <div className="">
-          Don't worry, this process will be more streamlined soon.
-        </div>
+
+        <form
+          onSubmit={() => {
+            localStorage.setItem(
+              "path",
+              (document.getElementById("path") as HTMLInputElement).value,
+            );
+            toast("Successfully set path!");
+            // is this very unsafe? yes.
+            // do i care? doesn't look like it.
+          }}
+          className="flex flex-row gap-2 w-full"
+        >
+          <input
+            id={"path"}
+            type={"text"}
+            placeholder={"Your music folder"}
+            className={
+              "p-2 px-4 rounded-md outline-2 outline-dominant-foreground placeholder:text-dominant-foreground/80 w-full font-semibold focus-visible:ring-[4px] focus-visible:ring-dominant-foreground/50 transition-all ease-out duration-75"
+            }
+          />
+          <button
+            formAction={"submit"}
+            className="p-2 px-3 bg-dominant text-dominant-background/80 rounded-md outline-2 outline-dominant font-semibold hover:bg-dominant/75 hover:outline-dominant/75 transition-all ease-out duration-75 cursor-pointer"
+          >
+            Submit
+          </button>
+        </form>
       </div>
     );
   }
