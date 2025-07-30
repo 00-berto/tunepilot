@@ -1,34 +1,9 @@
-# tunepilot
+<img src="/src/renderer/public/logo.svg" style="width: 128px; height: 128px"><h1 style="font-size: 48px">tunepilot - the music player</h1>
 
-An Electron application with React and TypeScript
+tunepilot is a local music player built with ElectronJS and React (with Vite). It has Discord integration, so you can brag to all your friends about how tapped in you are with Juice WRLD's unreleased music (RIP🕊️)
 
-## Recommended IDE Setup
+## Setup
+Just download the installer from this repository's "releases" category and run it. Then, paste the path which contains all your music files and tunepilot should handle the rest automatically.
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-## Project Setup
-
-### Install
-
-```bash
-$ npm install
-```
-
-### Development
-
-```bash
-$ npm run dev
-```
-
-### Build
-
-```bash
-# For windows
-$ npm run build:win
-
-# For macOS
-$ npm run build:mac
-
-# For Linux
-$ npm run build:linux
-```
+## Contributing
+Anyone can contribute, just open a pull request and berto will test it, then either accept it or suggest some changes.
