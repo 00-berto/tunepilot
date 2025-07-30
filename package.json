@@ -1,10 +1,10 @@
 {
   "name": "tunepilot",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "Local music player built with ElectronJS and React",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": "berto",
+  "homepage": "https://google.com/",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
