@@ -81,10 +81,6 @@ export default function FilesList() {
     }
   }, [files, dispatch]);
 
-  useEffect(() => {
-    console.log("Redux files updated:", reduxFiles);
-  }, [reduxFiles]);
-
   if (path && reduxFiles.files.length <= 1) {
     dispatch(setLoading(true));
   }
