@@ -228,32 +228,32 @@ export default function NowPlaying() {
         </div>
       </div>
 
-      <div className="flex flex-row gap-8 h-18 justify-center items-center origin-center">
+      <div className="flex flex-row gap-8 justify-center items-center origin-center">
         <FastForwardIcon
           onClick={() => handleSkip("prev")}
           className={
-            "size-14 rotate-180 fill-current opacity-50 hover:opacity-100 hover:size-16 transition-all ease-out duration-75"
+            "size-14 rotate-180 fill-current opacity-50 hover:opacity-100 transition-all ease-out duration-75"
           }
         />
         {tune.playing ? (
           <PauseIcon
             onClick={() => audioRef.current?.pause()}
             className={
-              "size-16 fill-current opacity-50 hover:opacity-100 hover:size-18 transition-all ease-out duration-75"
+              "size-16 fill-current opacity-50 hover:opacity-100 transition-all ease-out duration-75"
             }
           />
         ) : (
           <PlayIcon
             onClick={() => audioRef.current?.play()}
             className={
-              "size-16 fill-current opacity-50 hover:opacity-100 hover:size-18 transition-all ease-out duration-75"
+              "size-16 fill-current opacity-50 hover:opacity-100 transition-all ease-out duration-75"
             }
           />
         )}
         <FastForwardIcon
           onClick={() => handleSkip("next")}
           className={
-            "size-14 fill-current opacity-50 hover:opacity-100 hover:size-16 transition-all ease-out duration-75"
+            "size-14 fill-current opacity-50 hover:opacity-100 transition-all ease-out duration-75"
           }
         />
       </div>
