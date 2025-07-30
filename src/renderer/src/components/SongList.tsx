@@ -115,7 +115,7 @@ function Song({
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       className={
-        "w-full flex flex-row items-center justify-start gap-3 p-2 bg-opacity-10 hover:outline-2 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
+        "flex flex-row items-center justify-start gap-3 p-2 bg-opacity-10 hover:outline-2 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
       }
     >
       <img
