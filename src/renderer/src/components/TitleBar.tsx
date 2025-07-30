@@ -6,7 +6,9 @@ export default function TitleBar() {
   const dispatch = useDispatch();
 
   return (
-    <div className={"flex flex-row items-center justify-between relative h-12"}>
+    <div
+      className={"flex flex-row items-center justify-between relative h-1/16"}
+    >
       <div className="text-xl text-dominant-dynamic/60 font-bold w-full flex flex-row items-center justify-start">
         tunepilot
       </div>
