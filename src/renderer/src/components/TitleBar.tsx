@@ -8,14 +8,16 @@ export default function TitleBar() {
 
   return (
     <div
-      className={"flex flex-row items-center justify-between relative h-1/16"}
+      className={
+        "flex flex-row items-center justify-between relative h-1/16 titlebar"
+      }
     >
       <div className="text-xl text-dominant-dynamic/60 font-bold w-full flex flex-row gap-2 items-center justify-start">
         <Logo className={"size-6 text-dominant-dynamic/30"} />
         tunepilot
       </div>
 
-      <div className="w-full titlebar flex items-center justify-center h-full">
+      <div className="w-full flex items-center justify-center h-full">
         <div className="no-titlebar relative w-full backdrop-blur-xl rounded-lg h-full">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2 text-dominant-foreground">
             <SearchIcon className={"size-6 stroke-2"} aria-hidden="true" />
