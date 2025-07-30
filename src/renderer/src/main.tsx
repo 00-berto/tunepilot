@@ -8,6 +8,7 @@ import { store } from "@renderer/lib/store";
 import NowPlaying from "@renderer/components/NowPlaying";
 import DynamicColorChanger from "@renderer/components/DynamicColorChanger";
 import TitleBar from "@renderer/components/TitleBar";
+import { Toaster } from "@renderer/components/ui/sonner";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")!).render(
         }
       >
         <TitleBar />
+        <Toaster position={"bottom-right"} />
 
         <div className="flex h-full flex-row gap-3 overflow-hidden">
           <div className="flex h-full w-3/4 p-5 bg-dominant-background/40 rounded-lg overflow-auto scrollbar-fix">
