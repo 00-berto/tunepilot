@@ -62,7 +62,7 @@ export default function SongList() {
   });
 
   return (
-    <div className={"flex flex-col gap-1 items-start justify-start"}>
+    <div className={"flex flex-col gap-1 items-start justify-start w-2/3"}>
       {(filteredFiles.length > 0 ? filteredFiles : files).map((file) => {
         return <Song file={file} />;
       })}
@@ -85,6 +85,7 @@ function Song({
 }) {
   const dispatch = useDispatch();
   const [dominantColor, setDominantColor] = useState("#ffffff");
+  const [hovering, setHovering] = useState(false);
 
   const rgbToRgba = (rgb: string, alpha: number): string => {
     return rgb.replace(/^rgb\((.+)\)$/i, `rgba($1, ${alpha})`);
@@ -106,16 +107,24 @@ function Song({
       }}
       style={{
         outlineColor: dominantColor,
-        background: `linear-gradient(to right, ${backgroundColor} 0%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 100%)`,
+        transition: "background 0.3s ease-out",
+        background: hovering
+          ? `linear-gradient(to right, ${backgroundColor} 0%, ${backgroundColor} 30%, rgba(0,0,0,0) 100%)`
+          : "none",
       }}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
       className={
-        "flex flex-row items-center justify-start gap-3 p-2 hover:outline-2 bg-opacity-10 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
+        "w-full flex flex-row items-center justify-start gap-3 p-2 bg-opacity-10 hover:outline-2 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
       }
     >
       <img
         src={file.album.cover}
         alt={"album cover"}
         className={"aspect-square size-12 rounded-md"}
+        style={{
+          boxShadow: "0 0 16px 4px " + backgroundColor,
+        }}
       />
       <div className="flex flex-col gap-1">
         <div className="font-bold text-dominant-foreground/90">{file.name}</div>
