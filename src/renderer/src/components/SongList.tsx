@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@renderer/lib/store";
 import { setFile } from "@renderer/lib/slices/tuneSlice";
 import { getDominantColor } from "@renderer/lib/hooks/getDominantColor";
+import { useState } from "react";
 
 export default function SongList() {
   const files = useSelector((state: RootState) => state.files.files);
-  const dispatch = useDispatch();
   const loading = useSelector((state: RootState) => state.files.loading);
   const loadedFiles = useSelector(
     (state: RootState) => state.files.loadedFiles,
@@ -61,48 +61,68 @@ export default function SongList() {
     );
   });
 
+  return (
+    <div className={"flex flex-col gap-1 items-start justify-start"}>
+      {(filteredFiles.length > 0 ? filteredFiles : files).map((file) => {
+        return <Song file={file} />;
+      })}
+    </div>
+  );
+}
+
+function Song({
+  file,
+}: {
+  file: {
+    path: string;
+    name: string;
+    artist: string;
+    album: {
+      name: string;
+      cover: string;
+    };
+  };
+}) {
+  const dispatch = useDispatch();
+  const [dominantColor, setDominantColor] = useState("#ffffff");
+
   const rgbToRgba = (rgb: string, alpha: number): string => {
     return rgb.replace(/^rgb\((.+)\)$/i, `rgba($1, ${alpha})`);
   };
 
-  return (
-    <div className={"flex flex-col gap-1 items-start justify-start"}>
-      {(filteredFiles.length > 0 ? filteredFiles : files).map((file) => {
-        const img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.src = file.album.cover;
-        const { dominant } = getDominantColor(img);
-        const backgroundColor = rgbToRgba(dominant, 0.5);
+  const img = new Image();
+  img.crossOrigin = "Anonymous";
+  img.src = file.album.cover;
+  img.onload = () => {
+    const { dominant } = getDominantColor(img);
+    setDominantColor(dominant);
+  };
+  const backgroundColor = rgbToRgba(dominantColor, 0.5);
 
-        return (
-          <div
-            onClick={() => {
-              dispatch(setFile(file.path));
-            }}
-            style={{
-              outlineColor: dominant,
-              background: `linear-gradient(to right, ${backgroundColor} 0%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 100%)`,
-            }}
-            className={
-              "flex flex-row items-center justify-start gap-3 p-2 hover:outline-2 bg-opacity-10 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
-            }
-          >
-            <img
-              src={file.album.cover}
-              alt={"album cover"}
-              className={"aspect-square size-12 rounded-md"}
-            />
-            <div className="flex flex-col gap-1">
-              <div className="font-bold text-dominant-foreground/90">
-                {file.name}
-              </div>
-              <div className="text-xs font-semibold text-dominant-foreground/50">
-                {file.artist}
-              </div>
-            </div>
-          </div>
-        );
-      })}
+  return (
+    <div
+      onClick={() => {
+        dispatch(setFile(file.path));
+      }}
+      style={{
+        outlineColor: dominantColor,
+        background: `linear-gradient(to right, ${backgroundColor} 0%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 100%)`,
+      }}
+      className={
+        "flex flex-row items-center justify-start gap-3 p-2 hover:outline-2 bg-opacity-10 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
+      }
+    >
+      <img
+        src={file.album.cover}
+        alt={"album cover"}
+        className={"aspect-square size-12 rounded-md"}
+      />
+      <div className="flex flex-col gap-1">
+        <div className="font-bold text-dominant-foreground/90">{file.name}</div>
+        <div className="text-xs font-semibold text-dominant-foreground/50">
+          {file.artist}
+        </div>
+      </div>
     </div>
   );
 }
