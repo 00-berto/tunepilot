@@ -133,6 +133,7 @@ function Song({
 
   return (
     <div
+      key={file.path}
       onClick={() => {
         dispatch(setFile(file.path));
       }}
