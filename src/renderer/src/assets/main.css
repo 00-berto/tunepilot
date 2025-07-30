@@ -148,3 +148,23 @@
 .no-titlebar {
   app-region: no-drag;
 }
+
+.scroll_enabled::-webkit-scrollbar {
+  width: 15px;
+}
+.scroll_enabled::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
+}
+.scroll_enabled::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 999px;
+  height: 40px;
+  transition: all 150ms ease-out;
+}
+.scroll_enabled::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 1);
+  transition: all 150ms ease-out;
+}
+.scroll_enabled::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}

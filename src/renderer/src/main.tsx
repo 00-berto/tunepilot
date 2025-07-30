@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")!).render(
         <TitleBar />
 
         <div className="flex h-full flex-row gap-3 overflow-hidden">
-          <div className="flex h-full w-3/4 p-5 bg-dominant-background/40 rounded-lg overflow-auto scrollbar-fix">
+          <div className="flex scroll_enabled h-full w-3/4 p-5 bg-dominant-background/40 rounded-lg overflow-auto scrollbar-fix">
             <App />
           </div>
           <div className="flex h-full w-1/4 p-5 bg-dominant-background/40 rounded-lg">
