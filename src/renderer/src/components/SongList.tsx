@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@renderer/lib/store";
 import { setFile } from "@renderer/lib/slices/tuneSlice";
+import { getDominantColor } from "@renderer/lib/hooks/getDominantColor";
 
 export default function SongList() {
   const files = useSelector((state: RootState) => state.files.files);
@@ -60,16 +61,30 @@ export default function SongList() {
     );
   });
 
+  const rgbToRgba = (rgb: string, alpha: number): string => {
+    return rgb.replace(/^rgb\((.+)\)$/i, `rgba($1, ${alpha})`);
+  };
+
   return (
     <div className={"flex flex-col gap-1 items-start justify-start"}>
       {(filteredFiles.length > 0 ? filteredFiles : files).map((file) => {
+        const img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.src = file.album.cover;
+        const { dominant } = getDominantColor(img);
+        const backgroundColor = rgbToRgba(dominant, 0.5);
+
         return (
           <div
             onClick={() => {
               dispatch(setFile(file.path));
             }}
+            style={{
+              outlineColor: dominant,
+              background: `linear-gradient(to right, ${backgroundColor} 0%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 100%)`,
+            }}
             className={
-              "flex flex-row items-center justify-start gap-3 p-2 hover:outline-2 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
+              "flex flex-row items-center justify-start gap-3 p-2 hover:outline-2 bg-opacity-10 outline-dominant rounded-md h-auto w-full transition-all ease-out duration-75 cursor-pointer select-none"
             }
           >
             <img
