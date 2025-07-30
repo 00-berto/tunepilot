@@ -1,0 +1,19 @@
+export default function Logo({ className }: { className?: string }) {
+  return (
+    <svg
+      width="112"
+      height="129"
+      viewBox="0 0 112 129"
+      className={className}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M32 129C14.3269 129 0 114.673 0 97C0 79.3269 14.3269 65 32 65C37.8286 65 43.2932 66.5583 48 69.281V0H112V48H64V97C64 114.67 49.67 129 32 129ZM32 113C23.1634 113 16 105.837 16 97C16 88.1634 23.1634 81 32 81C40.8366 81 48 88.1634 48 97C48 105.837 40.8366 113 32 113ZM64 16H96V32H64V16Z"
+        fill={"currentColor"}
+      />
+    </svg>
+  );
+}

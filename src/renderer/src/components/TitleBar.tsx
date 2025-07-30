@@ -1,6 +1,7 @@
 import { MinusIcon, SearchIcon, SquareIcon, XIcon } from "lucide-react";
 import { setSearch } from "@renderer/lib/slices/tuneSlice";
 import { useDispatch } from "react-redux";
+import Logo from "@renderer/components/svg/Logo";
 
 export default function TitleBar() {
   const dispatch = useDispatch();
@@ -9,7 +10,8 @@ export default function TitleBar() {
     <div
       className={"flex flex-row items-center justify-between relative h-1/16"}
     >
-      <div className="text-xl text-dominant-dynamic/60 font-bold w-full flex flex-row items-center justify-start">
+      <div className="text-xl text-dominant-dynamic/60 font-bold w-full flex flex-row gap-2 items-center justify-start">
+        <Logo className={"size-6 text-dominant-dynamic/30"} />
         tunepilot
       </div>
 
