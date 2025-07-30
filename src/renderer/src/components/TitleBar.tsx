@@ -14,7 +14,7 @@ export default function TitleBar() {
       </div>
 
       <div className="w-full titlebar flex items-center justify-center h-full">
-        <div className="no-titlebar relative w-full backdrop-blur-xl rounded-md h-full">
+        <div className="no-titlebar relative w-full backdrop-blur-xl rounded-lg h-full">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2 text-dominant-foreground">
             <SearchIcon className={"size-6 stroke-2"} aria-hidden="true" />
           </div>
@@ -28,7 +28,7 @@ export default function TitleBar() {
             }}
             placeholder={"Search anything..."}
             className={
-              "outline outline-hidden w-full h-full rounded-md p-2 px-10 text-dominant-foreground placeholder:text-dominant-foreground/80 bg-dominant-background/40 focus-visible:ring-[3px] ring-ring/50 flex flex-row gap-1 items-center justify-start transition-all ease-out duration-100"
+              "outline outline-hidden w-full h-full rounded-lg p-2 px-10 text-dominant-foreground placeholder:text-dominant-foreground/80 bg-dominant-background/40 focus-visible:ring-[3px] ring-ring/50 flex flex-row gap-1 items-center justify-start transition-all ease-out duration-100"
             }
           />
           {/*<AnimatePresence mode={"wait"} initial={false}>*/}
@@ -52,15 +52,15 @@ export default function TitleBar() {
         </div>
       </div>
 
-      <div className="w-full h-full titlebar flex items-center justify-end">
-        <div className="flex flex-row rounded-md bg-dominant-background/40 text-dominant-foreground overflow-hidden h-full no-titlebar">
+      <div className="relative w-full h-full titlebar flex items-center justify-end">
+        <div className="absolute -top-3 -right-3 flex flex-row rounded-bl-lg bg-dominant-background/40 text-dominant-foreground overflow-hidden no-titlebar">
           <button
             onClick={() => window.api.minimize()}
             className={
               "hover:bg-dominant-background/40 w-auto p-2 transition-all ease-out duration-75"
             }
           >
-            <MinusIcon className={"size-full"} />
+            <MinusIcon className={"size-5"} />
           </button>
 
           <button
@@ -69,7 +69,7 @@ export default function TitleBar() {
               "hover:bg-dominant-background/40 p-2.5 transition-all ease-out duration-75"
             }
           >
-            <SquareIcon className={"size-full"} />
+            <SquareIcon className={"size-5"} />
           </button>
 
           <button
@@ -78,7 +78,7 @@ export default function TitleBar() {
               "hover:bg-red-500 p-2 transition-all ease-out duration-75"
             }
           >
-            <XIcon className={"size-full"} />
+            <XIcon className={"size-5"} />
           </button>
         </div>
       </div>
