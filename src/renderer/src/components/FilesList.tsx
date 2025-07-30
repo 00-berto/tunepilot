@@ -21,20 +21,7 @@ export default function FilesList() {
   const reduxFiles = useSelector((state: RootState) => state.files);
 
   if (!path) {
-    return (
-      <div
-        className={
-          "select-none size-full flex flex-col gap-3 items-center justify-center"
-        }
-      >
-        <div className="text-xl font-bold">
-          Please specify a path inside your local storage.
-        </div>
-        <div className="">
-          Don't worry, this process will be more streamlined soon.
-        </div>
-      </div>
-    );
+    return null;
   }
 
   const setSelectedFile = (file: string) => {
@@ -46,7 +33,7 @@ export default function FilesList() {
       const filesAndFolders = await getFiles(path);
       setFiles(filesAndFolders);
     };
-    fetchFiles();
+    fetchFiles().then();
   }, [path]);
 
   useEffect(() => {
