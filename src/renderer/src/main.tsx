@@ -19,7 +19,6 @@ createRoot(document.getElementById("root")!).render(
         }
       >
         <TitleBar />
-        <Toaster position={"bottom-right"} />
 
         <div className="flex h-full flex-row gap-3 overflow-hidden">
           <div className="flex h-full w-3/4 p-5 bg-dominant-background/40 rounded-lg overflow-auto scrollbar-fix">
@@ -33,6 +32,7 @@ createRoot(document.getElementById("root")!).render(
       <div className="hidden">
         <DynamicColorChanger />
       </div>
+      <Toaster position={"bottom-right"} />
     </Provider>
   </StrictMode>,
 );
