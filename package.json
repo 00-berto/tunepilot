@@ -1,7 +1,7 @@
 {
   "name": "tunepilot",
   "version": "1.0.0",
-  "description": "Local music player built with ElectronJS and React",
+  "description": "tunepilot",
   "main": "./out/main/index.js",
   "author": "berto",
   "homepage": "https://google.com/",
@@ -33,6 +33,9 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "colorthief": "^2.6.0",
+    "discord-rich-presence": "^0.0.8",
+    "discord-rpc-electron": "^4.0.2",
+    "discord.js": "^14.21.0",
     "electron-updater": "^6.3.9",
     "fast-average-color": "^9.5.0",
     "lucide-react": "^0.526.0",
