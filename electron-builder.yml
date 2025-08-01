@@ -1,4 +1,4 @@
-appId: com.berto.tunepilot
+appId: com.tunepilot.app
 productName: tunepilot
 directories:
   buildResources: build

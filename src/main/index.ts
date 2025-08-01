@@ -2,10 +2,13 @@ import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import icon from "../../resources/icon.png?asset";
+// import RPC from "discord-rpc-electron";
+
+let mainWindow;
 
 function createWindow(): void {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
     show: false,
@@ -52,7 +55,7 @@ function createWindow(): void {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId("com.berto");
+  electronApp.setAppUserModelId("com.tunepilot.app");
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -84,3 +87,37 @@ app.on("window-all-closed", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// Set this to your Client ID.
+// const clientId = "1400406352467333231";
+//
+// const rpc = new RPC.Client({ transport: "ipc" });
+//
+// async function setActivity() {
+//   if (!rpc || !mainWindow) {
+//     return;
+//   }
+//
+//   rpc.setActivity({
+//     name: "man of the year",
+//     type: 2,
+//     details: `by Kid Cudi`,
+//     state: "on Man On The Moon",
+//     largeImageKey: "logo",
+//     largeImageText: "this is tunepilot",
+//     smallImageKey: "memoji",
+//     smallImageText: "im berto!",
+//     instance: false,
+//   });
+// }
+
+// rpc.on("ready", () => {
+//   setActivity();
+//
+//   // activity can only be set every 15 seconds
+//   setInterval(() => {
+//     setActivity();
+//   }, 15e3);
+// });
+
+// rpc.login({ clientId }).catch(console.error);
