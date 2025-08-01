@@ -102,6 +102,23 @@ export default function NowPlaying() {
     };
   }, [tune.file, files]);
 
+  useEffect(() => {
+    if ("mediaSession" in navigator && tune.songDetails.name) {
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: tune.songDetails.name,
+        artist: tune.songDetails.artist,
+        album: tune.songDetails.album.name,
+        artwork: [
+          {
+            src: tune.songDetails.album.cover || "/no_cover.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      });
+    }
+  }, [tune.songDetails]);
+
   function parseTime(time: number): string {
     if (!Number.isFinite(time) || isNaN(time)) return "-:--";
     const minutes = Math.floor(time / 60);
