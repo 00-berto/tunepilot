@@ -151,7 +151,7 @@ function Song({
       }
     >
       <img
-        src={file.album.cover}
+        src={file.album.cover || "/no_cover.png"}
         alt={"album cover"}
         className={"aspect-square size-12 rounded-md"}
         style={{
