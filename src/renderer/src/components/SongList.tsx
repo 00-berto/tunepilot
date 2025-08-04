@@ -66,18 +66,27 @@ export default function SongList() {
     return (
       <div
         className={
-          "select-none size-full flex flex-col gap-3 items-center justify-center"
+          "select-none size-full flex flex-col gap-8 items-center justify-center"
         }
       >
         <div className="text-xl font-bold">
           Please wait while we load your music.
         </div>
-        <div className="">
-          Forgive us if this process takes long, we are looking for ways to make
-          it faster.
-        </div>
-        <div className="">
-          ({loadedFiles}/{fileCount} files loaded)
+        <div className="">We're sorry if this process takes long.</div>
+
+        <div className="flex flex-col gap-2 items-center justify-center">
+          <div className="flex flex-row gap-0 w-64 h-1.5 rounded-full overflow-hidden">
+            <div
+              className="bg-white transition-all linear"
+              style={{
+                width: `${(loadedFiles / fileCount) * 100}%`,
+              }}
+            />
+            <div className="flex-grow bg-white/50" />
+          </div>
+          <div className="text-sm">
+            ({loadedFiles}/{fileCount} files loaded)
+          </div>
         </div>
       </div>
     );
