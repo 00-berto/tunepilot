@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFile } from "@renderer/lib/slices/tuneSlice";
 import { parseBlob } from "music-metadata";
 import {
   addFiles,
@@ -24,10 +23,6 @@ export default function FilesList() {
   if (!path) {
     return null;
   }
-
-  const setSelectedFile = (file: string) => {
-    dispatch(setFile(file));
-  };
 
   useEffect(() => {
     const fetchFiles = async () => {
@@ -115,18 +110,5 @@ export default function FilesList() {
     return filesArr;
   }
 
-  return (
-    <div className={"flex flex-col gap-2"}>
-      {files.length > 0 &&
-        files.map((file) => (
-          <div
-            key={file}
-            onClick={() => setSelectedFile(file)}
-            className={"cursor-pointer"}
-          >
-            {file}
-          </div>
-        ))}
-    </div>
-  );
+  return null;
 }
