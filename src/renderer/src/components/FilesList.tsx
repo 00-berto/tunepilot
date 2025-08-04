@@ -12,6 +12,7 @@ import {
 import { getCoverSrc } from "@renderer/components/NowPlaying";
 import { getAudioUrl } from "@renderer/lib/hooks/getAudioUrl";
 import { RootState } from "@renderer/lib/store";
+import { openDB } from "idb";
 
 export default function FilesList() {
   const [files, setFiles] = useState<string[]>([]);
@@ -38,16 +39,33 @@ export default function FilesList() {
 
   useEffect(() => {
     const setFilesToRedux = async () => {
+      const db = await openDB("FileMetadataDB", 1, {
+        upgrade(db) {
+          if (!db.objectStoreNames.contains("metadata")) {
+            db.createObjectStore("metadata", { keyPath: "path" });
+          }
+        },
+      });
+
       const filePayloads = await Promise.all(
         files.map(async (file) => {
           if (!file) return null;
+
+          // Check if metadata is cached
+          const cached = await db.get("metadata", file);
+          if (cached) {
+            dispatch(incrementLoadedFileCount());
+            return cached;
+          }
+
+          // Fetch and parse metadata
           const url = await getAudioUrl(file);
           const response = await fetch(url);
           const blob = await response.blob();
           if (!blob) return null;
           const metadata = await parseBlob(blob);
-          dispatch(incrementLoadedFileCount());
-          return {
+
+          const payload = {
             path: file,
             name: metadata.common.title ?? "",
             artist: metadata.common.artist ?? "",
@@ -56,8 +74,14 @@ export default function FilesList() {
               cover: getCoverSrc(metadata.common.picture),
             },
           };
+
+          // Cache metadata in IndexedDB
+          await db.put("metadata", payload);
+          dispatch(incrementLoadedFileCount());
+          return payload;
         }),
       );
+
       dispatch(addFiles(filePayloads.filter(Boolean)));
     };
 
